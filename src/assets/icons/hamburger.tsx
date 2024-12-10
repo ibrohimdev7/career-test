@@ -1,0 +1,39 @@
+export const HamburgerIcon = () => {
+  return (
+    <svg
+      width="28"
+      height="23"
+      viewBox="0 0 28 23"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <line
+        x1="26.9998"
+        y1="1.41357"
+        x2="1.56838"
+        y2="1.41357"
+        stroke="#0066FF"
+        strokeWidth="2"
+        strokeLinecap="round"
+      />
+      <line
+        x1="27"
+        y1="11.4321"
+        x2="1.56863"
+        y2="11.4321"
+        stroke="#0066FF"
+        strokeWidth="2"
+        strokeLinecap="round"
+      />
+      <line
+        x1="27"
+        y1="21.3621"
+        x2="1.56863"
+        y2="21.3621"
+        stroke="#0066FF"
+        strokeWidth="2"
+        strokeLinecap="round"
+      />
+    </svg>
+  );
+};
