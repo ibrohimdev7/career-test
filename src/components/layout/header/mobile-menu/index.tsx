@@ -1,49 +1,68 @@
 "use client";
 
-import React, { FC } from "react";
-import { useLayoutStore } from "@/store/useLayoutStore";
-import Link from "next/link";
-import HamburgerButton from "../../../buttons/hamburger-button";
-import HeaderNav from "../header-nav";
-import Button from "../../../buttons/common-button";
+import { useState, useRef } from "react";
+import { useClickAway } from "react-use";
+import { Squash as Hamburger } from "hamburger-react";
+import { Link } from "react-scroll";
+import { XIcon } from "lucide-react";
 import { NAV_ITEMS } from "../constants";
 
-type MobileMenuProps = object;
+const NavMobile = () => {
 
-const MobileMenu: FC<MobileMenuProps> = ({}) => {
-  const { mobileOpen, handleMobileOpen } = useLayoutStore();
+  const ref = useRef(null);
+
+  const [isOpen, setOpen] = useState(false);
+
+  useClickAway(ref, () => setOpen(false));
 
   return (
-    <div
-      className={`fixed top-0 z-20 flex h-full w-screen flex-col overflow-scroll bg-white px-4 py-8 lg:hidden ${
-        mobileOpen ? "" : "!hidden"
-      }`}
-    >
-      <div className="h-full">
-        <div className="flex items-center justify-between">
-          <Link href="/" className="text-4xl font-semibold">
-            Career Job
-          </Link>
-          <HamburgerButton />
-        </div>
-        <div className="flex h-full flex-col px-2 py-12">
-          <ul className="flex h-full flex-col items-center justify-between">
-            {NAV_ITEMS.map((el, _i) => (
-              <HeaderNav
-                key={_i}
-                href={el.href}
-                label={el.label}
-                onClick={() => handleMobileOpen(false)}
-              />
-            ))}
-            <Link href={"#"} className="block w-4/5">
-              <Button label="Start the Test" size="large" fullWidth />
-            </Link>
+    <div className="lg:hidden">
+      <Hamburger toggled={isOpen} size={20} toggle={setOpen} label="Menu btn" />
+
+      {isOpen ? (
+        <div
+          className={`fixed left-0 right-0 top-0 z-[999] flex ${isOpen ? "h-screen overflow-y-scroll" : ""} flex-col gap-10 bg-white p-5`}
+          style={{
+            background: "linear-gradient(180deg, #c2d5f6 26.38%, #c3d5f6 100%)",
+          }}
+        >
+          <div
+            className="animate-fadeInScale ml-auto"
+            onClick={() => setOpen(false)}
+          >
+            <XIcon size={32} />
+          </div>
+          <ul className="grid gap-2">
+            {NAV_ITEMS.map((route, idx) => {
+              const { Icon } = route;
+
+              return (
+                <li
+                  key={idx}
+                  className={`animate-fadeInScale w-full rounded-xl p-[0.08rem] delay-${idx * 100}`}
+                >
+                  <Link
+                    className="flex w-full items-center justify-between rounded-xl bg-white p-5"
+                    to={route.href}
+                    href={route.href}
+                    spy={true}
+                    smooth={true}
+                    duration={500}
+                    onClick={() => setOpen(false)}
+                  >
+                    <span className="flex gap-1 text-lg">
+                      {route?.label}
+                    </span>
+                    <Icon className="text-xl" size={24} />
+                  </Link>
+                </li>
+              );
+            })}
           </ul>
         </div>
-      </div>
+      ) : null}
     </div>
   );
 };
 
-export default MobileMenu;
+export default NavMobile;

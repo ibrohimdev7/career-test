@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import Header from "@/components/layout/header";
 import Footer from "@/components/layout/footer";
-import MobileMenu from "@/components/layout/header/mobile-menu";
 
 export const metadata: Metadata = {
   title: "IT Job Finders",
@@ -18,7 +17,6 @@ export default function RootLayout({
     <>
       <Header />
       {children}
-      <MobileMenu />
       <Footer />
     </>
   );

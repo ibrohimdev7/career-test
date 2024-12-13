@@ -6,8 +6,10 @@ import { CheckCircle, BarChart } from "lucide-react";
 import { useTestProgress } from "@/store/useTestProgress";
 import Container from "@/components/layout/container";
 import TabLayout from "@/containers/career-test/components/tab-layout";
+import { IAnswerData } from "@/types/career-test";
+import TextRenderer from "./text-render";
 
-export const TestComplete: React.FC = () => {
+export const TestComplete = ({ data }: { data: IAnswerData }) => {
   const { answers, questions } = useTestProgress();
   const answeredQuestions = Object.keys(answers).length;
 
@@ -39,21 +41,23 @@ export const TestComplete: React.FC = () => {
           </div>
 
           <div className="mt-8 rounded-lg bg-indigo-50 p-6">
-            <div className="flex items-center space-x-3 text-mainColors-blue">
-              <BarChart className="h-5 w-5" />
-              <h3 className="font-semibold">Your Results Summary</h3>
+            <div className="space-y-3">
+              <div className="flex flex-wrap items-center gap-3 text-mainColors-blue">
+                <BarChart className="h-5 w-5" />
+                <h3 className="font-semibold">Your Results Summary</h3>
+              </div>
+              <p>
+                Best profession is{" "}
+                <span className="text-mainColors-blue underline">
+                  {data?.best_profession} Developer
+                </span>{" "}
+                for your career
+              </p>
             </div>
 
             <div className="mt-4 space-y-3">
               {/* Add result visualization here */}
-              <p className="text-gray-700">
-                Based on your responses, you show strong interests in:
-              </p>
-              <ul className="list-inside list-disc space-y-1 text-gray-600">
-                <li>Problem-solving and analytical thinking</li>
-                <li>Creative expression and design</li>
-                <li>Technology and innovation</li>
-              </ul>
+              <TextRenderer text={data?.gemini_response} />
             </div>
           </div>
 

@@ -1,5 +1,7 @@
 import { DM_Sans } from "next/font/google";
 import type { Metadata } from "next";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 import "@/styles/global.css";
 
@@ -23,6 +25,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${dmSans.className}`}>
+        <ToastContainer />
         {children}
       </body>
     </html>

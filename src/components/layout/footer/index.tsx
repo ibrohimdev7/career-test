@@ -18,7 +18,7 @@ const Footer = () => {
               <div className="rounded-lg bg-blue-100 p-2 text-blue-600">
                 <GraduationCap size={24} />
               </div>
-              <h1 className="text-xl font-bold">Learning Hub</h1>
+              <h1 className="text-xl font-bold">Find Yourself</h1>
             </Link>
           </div>
 

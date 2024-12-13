@@ -45,7 +45,7 @@ const Sidebar = ({
             <GraduationCap size={24} />
           </div>
           <div>
-            <h1 className="text-xl font-bold text-gray-900">Learning Hub</h1>
+            <h1 className="text-xl font-bold text-gray-900">Find Yourself</h1>
             <p className="text-sm text-gray-500">Student Dashboard</p>
           </div>
         </div>

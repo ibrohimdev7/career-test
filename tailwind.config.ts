@@ -70,6 +70,7 @@ const config: Config = {
         marquee: "marquee var(--duration) infinite linear",
         "marquee-vertical": "marquee-vertical var(--duration) linear infinite",
         meteor: "meteor 5s linear infinite",
+        fadeInScale: "fadeInScale 0.5s forwards",
       },
       keyframes: {
         "border-beam": {
@@ -104,6 +105,16 @@ const config: Config = {
           "100%": {
             transform: "rotate(215deg) translateX(-500px)",
             opacity: "0",
+          },
+        },
+        fadeInScale: {
+          "0%": {
+            opacity: "0",
+            transform: "scale(0)",
+          },
+          "100%": {
+            opacity: "1",
+            transform: "scale(1)",
           },
         },
       },
