@@ -1,27 +1,38 @@
 export interface Question {
   id: string;
   text: string;
-  type: "multiple-choice" | "slider" | "drag-drop";
-  options?: {
-    id: string;
-    text: string;
-  }[];
-  explanation?: string;
-  minValue?: number;
-  maxValue?: number;
-  step?: number;
+  option_a: string;
+  option_b: string;
+  option_c: string;
+  option_d: string;
 }
 
 export interface TestProgress {
   currentQuestionIndex: number;
-  answers: Record<string, string | number>;
+  answers: {
+    question: string;
+    selected_option: string | number;
+    question_text: string;
+  }[];
   isComplete: boolean;
+}
+
+export interface IAnswerData {
+  id: number;
+  user: number;
+  gemini_response: string;
+  best_profession: string;
 }
 
 export interface TestState extends TestProgress {
   questions: Question[];
-  setAnswer: (questionId: string, answer: string | number) => void;
+  setAnswer: (values: {
+    question: string;
+    selected_option: string | number;
+    question_text: string;
+  }) => void;
   nextQuestion: () => void;
   previousQuestion: () => void;
   completeTest: () => void;
+  setQuestions: (questions: Question[]) => void;
 }

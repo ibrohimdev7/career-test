@@ -1,8 +1,8 @@
-import Image from "next/image";
 import { items } from "./constants";
 import Container from "@/components/layout/container";
 import Intro from "@/components/titles/intro";
 import Button from "@/components/buttons/common-button";
+import Link from "next/link";
 
 const HowItWorksSection = () => {
   return (
@@ -41,17 +41,20 @@ const HowItWorksSection = () => {
                       {item?.description}
                     </p>
                   </div>
-                  <Button className="ease-[cubic-bezier(.5,.85,.25,1.8)] group-focus-within/article:translate-y-0 group-focus-within/article:opacity-100 group-focus-within/article:delay-700 group-hover/article:translate-y-0 group-hover/article:opacity-100 group-hover/article:delay-700 md:translate-y-2 md:truncate md:whitespace-nowrap md:opacity-0">
-                    Start the test
-                  </Button>
+                  <Link href={"/options"}>
+                    <Button className="ease-[cubic-bezier(.5,.85,.25,1.8)] group-focus-within/article:translate-y-0 group-focus-within/article:opacity-100 group-focus-within/article:delay-700 group-hover/article:translate-y-0 group-hover/article:opacity-100 group-hover/article:delay-700 md:translate-y-2 md:truncate md:whitespace-nowrap md:opacity-0">
+                      Start the test
+                    </Button>
+                  </Link>
                 </div>
-                <Image
+                <div className="relative z-0 h-72 w-full bg-gradient-to-b from-mainColors-blue/90 to-mainColors-blue/60 md:h-[420px]"></div>
+                {/* <Image
                   className="h-72 w-full object-cover md:h-[420px]"
                   src={item?.url}
                   width="960"
                   height="480"
                   alt="Image 01"
-                />
+                /> */}
               </article>
             );
           })}

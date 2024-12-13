@@ -11,7 +11,7 @@ export const ReviewCard = ({ img }: { img: StaticImageData }) => {
         height="416"
         alt="member person image"
         src={img}
-        className="h-full w-full object-contain lg:h-[416px] lg:w-[328px]"
+        className="h-full w-full object-cover rounded-3xl lg:h-[416px] lg:w-[328px]"
       />
     </figure>
   );

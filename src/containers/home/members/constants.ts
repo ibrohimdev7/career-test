@@ -1,16 +1,20 @@
-import { MemberPerson } from "@/assets/png";
+import { Asadbek, MemberPerson, NodirBro, Rozagul } from "@/assets/png";
 
 export const items = [
   {
     id: 1,
-    img: MemberPerson,
+    img: NodirBro,
   },
   {
     id: 2,
-    img: MemberPerson,
+    img: Asadbek,
   },
   {
     id: 3,
     img: MemberPerson,
+  },
+  {
+    id: 4,
+    img: Rozagul,
   },
 ];

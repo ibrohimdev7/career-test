@@ -1,3 +1,4 @@
+import CommonLoading from "@/components/common/common-loading";
 import { cn } from "@/lib/utils";
 import React from "react";
 
@@ -13,6 +14,7 @@ interface ButtonProps {
   size?: "normal" | "large";
   bordered?: boolean;
   disabled?: boolean;
+  loading?: boolean;
 
   onClick?: () => void;
 }
@@ -30,16 +32,18 @@ const Button = ({
   bordered = false,
   disabled,
   onClick,
+  loading,
 }: ButtonProps) => {
   return (
     <button
       type={type}
       className={cn(
-        "rounded-[36px] transition-all duration-300 ease-in-out",
+        "rounded-[36px] transition-all duration-300 ease-in-out disabled:cursor-not-allowed disabled:opacity-50",
         {
           "px-6 py-[18px] text-base": size === "normal",
           "px-9 py-6 text-lg": size === "large",
-          "flex items-center justify-center gap-2": startIcon || endIcon,
+          "flex items-center justify-center gap-2":
+            loading || startIcon || endIcon,
           "border border-mainColors-blue bg-white font-semibold text-mainColors-blue hover:bg-mainColors-blue hover:text-white active:bg-mainColors-blue/80":
             variant === "default",
           "bg-mainColors-blue font-bold text-white hover:bg-mainColors-blue/80 active:bg-mainColors-blue/70":
@@ -54,7 +58,7 @@ const Button = ({
       onClick={onClick}
       disabled={disabled}
     >
-      {startIcon}
+      {loading ? <CommonLoading /> : startIcon}
       {children || label}
       {endIcon}
     </button>

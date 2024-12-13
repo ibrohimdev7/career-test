@@ -1,25 +1,32 @@
 import { create } from "zustand";
 import { TestState } from "@/types/career-test";
-import { sampleQuestions } from "@/containers/career-test/constants";
 
 export const useTestProgress = create<TestState>()((set) => ({
-  questions: sampleQuestions,
+  questions: [],
   currentQuestionIndex: 0,
-  answers: {},
+  answers: [],
   isComplete: false,
 
-  setAnswer: (questionId, answer) =>
-    set((state) => ({
-      answers: { ...state.answers, [questionId]: answer },
-    })),
+  setAnswer: (value) =>
+    set((state) => {
+      const newAnswers = state?.answers?.filter(
+        (answer) => answer?.question !== value?.question
+      );
+
+      return {
+        answers: [...newAnswers, value],
+      };
+    }),
 
   nextQuestion: () =>
-    set((state) => ({
-      currentQuestionIndex: Math.min(
-        state.currentQuestionIndex + 1,
-        state.questions.length - 1
-      ),
-    })),
+    set((state) => {
+      return {
+        currentQuestionIndex: Math.min(
+          state.currentQuestionIndex + 1,
+          state.questions.length - 1
+        ),
+      };
+    }),
 
   previousQuestion: () =>
     set((state) => ({
@@ -30,4 +37,5 @@ export const useTestProgress = create<TestState>()((set) => ({
     set(() => ({
       isComplete: true,
     })),
+  setQuestions: (questions) => set(() => ({ questions })),
 }));

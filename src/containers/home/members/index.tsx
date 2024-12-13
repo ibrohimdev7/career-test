@@ -1,11 +1,8 @@
 import Container from "@/components/layout/container";
 import Intro from "@/components/titles/intro";
-import { items } from "./constants";
 import Marquee from "@/components/ui/marquee";
 import { ReviewCard } from "@/components/cards/members-card";
-
-const firstRow = items.slice(0, items.length / 2);
-const secondRow = items.slice(items.length / 2);
+import { items } from "./constants";
 
 const MembersSection = () => {
   return (
@@ -21,12 +18,12 @@ const MembersSection = () => {
 
           <div className="relative flex h-[400px] justify-center overflow-hidden md:h-[800px] lg:col-span-2 lg:ml-auto lg:gap-8">
             <Marquee pauseOnHover vertical className="m-0 [--duration:15s]">
-              {firstRow.map((review) => (
+              {items.map((review) => (
                 <ReviewCard key={review.id} {...review} />
               ))}
             </Marquee>
             <Marquee reverse pauseOnHover vertical className="[--duration:15s]">
-              {secondRow.map((review) => (
+              {items.map((review) => (
                 <ReviewCard key={review.id} {...review} />
               ))}
             </Marquee>
